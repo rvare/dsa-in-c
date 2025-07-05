@@ -4,10 +4,15 @@ typedef struct SinglyNode {
 } SinglyNode;
 
 typedef struct SinglyLinkedList {
-	SinglyNode head;
-	SinglyNode tail;
+	SinglyNode *head;
+	SinglyNode *tail;
 	unsigned int size;
 } SinglyLinkedList;
+
+// Initializer
+void Singly_Initializer(SinglyLinkedList *sll);
+
+SinglyLinkedList* Singly_Constructor();
 
 // Insertion Operations
 void Singly_Append(SinglyLinkedList *sll, int value);
