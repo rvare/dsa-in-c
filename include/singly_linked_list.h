@@ -20,9 +20,9 @@ void Singly_Prepend(SinglyLinkedList *sll, int value);
 void Singly_InsertAfter(SinglyLinkedList*sll, int index, int value);
 
 // Getters
-SinglyNode Singly_Get_Head(SinglyLinkedList *sll);
-SinglyNode Singly_Get_Tail(SinglyLinkedList *sll);
-SinglyNode Singly_Get_Element(SinglyLinkedList *sll, int index);
+SinglyNode* Singly_Get_Head(SinglyLinkedList *sll);
+SinglyNode* Singly_Get_Tail(SinglyLinkedList *sll);
+SinglyNode* Singly_Get_Element(SinglyLinkedList *sll, int index);
 SinglyNode Singly_Get_IndexOf(SinglyLinkedList *sll, int value);
 SinglyNode Singly_Get_LastIndexOf(SinglyLinkedList *sll, int value);
 unsigned int Singly_Get_Size(SinglyLinkedList *sll);
