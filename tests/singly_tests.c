@@ -74,18 +74,31 @@ int main() {
 	Singly_Remove_Element(&sll, 1);
 	print_list(&sll);
 
-	printf("Clear the list\n");
-	Singly_Clear_List(&sll);
+	// printf("Clear the list\n");
+	// Singly_Clear_List(&sll);
 
-	printf("Delete the list\n");
-	Singly_Delete_List(&sll);
-	printf("Deleted?\n");
-	if (sll == NULL) {
-		printf("Yes\n");
-	}
-	else {
-		printf("No\n");
-	}
+	// printf("Delete the list\n");
+	// Singly_Delete_List(&sll);
+	// printf("Deleted?\n");
+	// if (sll == NULL) {
+	// 	printf("Yes\n");
+	// }
+	// else {
+	// 	printf("No\n");
+	// }
+
+	SinglyLinkedList sll2;
+	Singly_Initializer(&sll2);
+	Singly_Append(&sll2, 1);
+	Singly_Append(&sll2, 2);
+	Singly_Append(&sll2, 3);
+	Singly_Append(&sll2, 4);
+	Singly_Append(&sll2, 5);
+	printf("Original list\n");
+	print_list(&sll2);
+	SinglyLinkedList* sll3 = Singly_Reverse_List(&sll2);
+	printf("New list\n");
+	print_list(sll3);
 
 	return EXIT_SUCCESS;
 }

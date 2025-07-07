@@ -136,7 +136,7 @@ void Singly_Remove_Tail(SinglyLinkedList *sll) {
 
 void Singly_Remove_Element(SinglyLinkedList *sll, int index) {
 	assert(sll != NULL);
-	
+
 	SinglyNode* curr = sll->head;
 	for (int i=0; i<index-1; i++) {
 		curr = curr->next;
@@ -154,6 +154,8 @@ void Singly_Remove_Value(SinglyLinkedList *sll, int value) {
 
 void Singly_Clear_List(SinglyLinkedList *sll) {
 	if (sll == NULL) return;
+
+	if (sll->head == NULL && sll->tail == NULL) return;
 
 	SinglyNode* curr = sll->head;
 	SinglyNode* node = NULL;
@@ -176,7 +178,28 @@ void Singly_Delete_List(SinglyLinkedList *sll) {
 
 // Transformation
 // SinglyLinkedList Singly_Transform(SinglyLinkedList *sll, void (*f)(SinglyNode *node));
-SinglyLinkedList Singly_Reverse_List(SinglyLinkedList *sll) {
+
+// Private function
+void _Singly_Reverse_List(SinglyLinkedList* sll, SinglyNode* node) {
+	if (node == NULL) {
+		return;
+	}
+	else if (node->next == NULL) {
+		Singly_Append(sll, node->value);
+		return;
+	}
+	else {
+		_Singly_Reverse_List(sll, node->next);
+		Singly_Append(sll, node->value);
+		return;
+	}
+}
+
+SinglyLinkedList* Singly_Reverse_List(SinglyLinkedList *sll) {
+	SinglyLinkedList *new_sll = Singly_Constructor();
+	SinglyNode* curr = sll->head;
+	_Singly_Reverse_List(new_sll, curr);
+	return new_sll;
 }
 
 // Slicing

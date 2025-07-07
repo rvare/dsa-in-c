@@ -37,7 +37,7 @@ void Singly_Delete_List(SinglyLinkedList *sll);
 
 // Transformation
 // SinglyLinkedList Singly_Transform(SinglyLinkedList *sll, void (*f)(SinglyNode *node));
-SinglyLinkedList Singly_Reverse_List(SinglyLinkedList *sll);
+SinglyLinkedList* Singly_Reverse_List(SinglyLinkedList *sll);
 
 // Slicing
 SinglyLinkedList Singly_Slice(SinglyLinkedList *sll, int start, int end);
