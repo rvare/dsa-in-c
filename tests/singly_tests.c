@@ -10,6 +10,7 @@
 unsigned char success_count = 0;
 
 void check_elements(SinglyLinkedList* sll, int start);
+void print_list(SinglyLinkedList* sll);
 
 int main() {
 	printf("Singly Linked List Tests\n");
@@ -31,6 +32,7 @@ int main() {
 	
 	check_elements(&sll, 1);
 	printf("%d out of %d appending successful\n", success_count, APPENDING_COUNT);
+	print_list(&sll);
 
 	// Prepend
 	success_count = 0;
@@ -42,6 +44,7 @@ int main() {
 
 	check_elements(&sll, -2);
 	printf("%d out of %d prepending successful\n", success_count,PRENDING_COUNT);
+	print_list(&sll);
 
 	// Insert After
 	success_count = 0;
@@ -50,6 +53,39 @@ int main() {
 
 	check_elements(&sll, -2);
 	printf("%d out of %d, inserting successful\n", success_count, 6);
+	print_list(&sll);
+
+	// Deletion
+	printf("Removing head\n");
+	Singly_Remove_Head(&sll);
+	printf("%d\n", sll.head->value);
+	print_list(&sll);
+
+	printf("Removing tail\n");
+	Singly_Remove_Tail(&sll);
+	printf("%d\n", sll.tail->value);
+	print_list(&sll);
+
+	printf("Remove fourth element\n");
+	Singly_Remove_Element(&sll, 3);
+	print_list(&sll);
+
+	printf("Remove second element\n");
+	Singly_Remove_Element(&sll, 1);
+	print_list(&sll);
+
+	printf("Clear the list\n");
+	Singly_Clear_List(&sll);
+
+	printf("Delete the list\n");
+	Singly_Delete_List(&sll);
+	printf("Deleted?\n");
+	if (sll == NULL) {
+		printf("Yes\n");
+	}
+	else {
+		printf("No\n");
+	}
 
 	return EXIT_SUCCESS;
 }
@@ -64,4 +100,15 @@ void check_elements(SinglyLinkedList* sll, int start) {
 		node = node->next;
 		++i;
 	}
+}
+
+void print_list(SinglyLinkedList* sll) {
+	assert(sll->head != NULL);
+
+	SinglyNode* curr = NULL;
+	for (curr = sll->head; curr != NULL; curr = curr->next) {
+		printf("%d ", curr->value);
+	}
+
+	printf("\n");
 }

@@ -75,7 +75,6 @@ void Singly_InsertAfter(SinglyLinkedList*sll, int index, int value){
 	new_node->next = next_node;
 }
 
-
 // Getters
 SinglyNode* Singly_Get_Head(SinglyLinkedList *sll){
 	assert(sll->head != NULL);
@@ -110,37 +109,79 @@ unsigned int Singly_Get_Size(SinglyLinkedList *sll){
 	return sll->size;
 }
 
-
 // Deletion
-void Singly_Remove_Element(SinglyLinkedList *sll, int index){
+void Singly_Remove_Head(SinglyLinkedList *sll) {
+	assert(sll != NULL);
+	if (sll->head == NULL) return;
+
+	SinglyNode* node = sll->head;
+	sll->head = sll->head->next;
+	node->next = NULL;
+
+	free(node);
 }
 
-void Singly_Remove_Value(SinglyLinkedList *sll, int value){
+void Singly_Remove_Tail(SinglyLinkedList *sll) {
+	assert(sll != NULL);
+	if (sll->tail == NULL) return;
+
+	SinglyNode* node = sll->tail;
+	SinglyNode* new_tail = sll->head;
+	while(new_tail->next->next != NULL) new_tail = new_tail->next;
+
+	new_tail->next = NULL;
+
+	free(node);
 }
 
-void Singly_Remove_Head(SinglyLinkedList *sll){
+void Singly_Remove_Element(SinglyLinkedList *sll, int index) {
+	assert(sll != NULL);
+	
+	SinglyNode* curr = sll->head;
+	for (int i=0; i<index-1; i++) {
+		curr = curr->next;
+	}
+
+	SinglyNode* remove_node = curr->next;
+	curr->next = curr->next->next;
+
+	remove_node->next = NULL;
+	free(remove_node);
 }
 
-void Singly_Remove_Tail(SinglyLinkedList *sll){
+void Singly_Remove_Value(SinglyLinkedList *sll, int value) {
 }
 
-void Singly_Clear_List(SinglyLinkedList *sll){
+void Singly_Clear_List(SinglyLinkedList *sll) {
+	if (sll == NULL) return;
+
+	SinglyNode* curr = sll->head;
+	SinglyNode* node = NULL;
+	while(curr != NULL) {
+		node = curr;
+		curr = curr->next;
+		free(node);
+	}
+
+	sll->size = 0;
 }
 
-void Singly_Delete_List(SinglyLinkedList *sll){
-}
+void Singly_Delete_List(SinglyLinkedList *sll) {
+	if (sll == NULL) return;
 
+	Singly_Clear_List(sll);
+
+	free(sll);
+}
 
 // Transformation
 // SinglyLinkedList Singly_Transform(SinglyLinkedList *sll, void (*f)(SinglyNode *node));
-SinglyLinkedList Singly_Reverse_List(SinglyLinkedList *sll){
+SinglyLinkedList Singly_Reverse_List(SinglyLinkedList *sll) {
 }
-
 
 // Slicing
-SinglyLinkedList Singly_Slice(SinglyLinkedList *sll, int start, int end){
+SinglyLinkedList Singly_Slice(SinglyLinkedList *sll, int start, int end) {
 }
-
 
 // TODO: Looping
 // void Singly_Foreach(SinglyLinkedList *sll, void (*f)(SinglyNode *node));
