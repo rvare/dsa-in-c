@@ -94,9 +94,10 @@ SinglyNode* Singly_Get_Tail(SinglyLinkedList *sll){
 SinglyNode* Singly_Get_Element(SinglyLinkedList *sll, int index){
 	assert(sll != NULL);
 	assert(sll->head != NULL);
+	if (index > sll->size) return NULL;
 
 	SinglyNode *curr_node = sll->head;
-	for (int i=0; i <= index && curr_node != NULL; i++) {
+	for (int i=0; i < index && curr_node != NULL; i++) {
 		curr_node = curr_node->next;
 	}
 
@@ -126,6 +127,7 @@ int Singly_Get_LastIndexOf(SinglyLinkedList *sll, int value){
 			found_index = curr_index;
 		}
 		++curr_index;
+		curr = curr->next;
 	}
 	return found_index > 0 ? found_index : -1;
 }
@@ -204,15 +206,16 @@ void Singly_Clear_List(SinglyLinkedList *sll) {
 		free(node);
 	}
 
+	sll->head = NULL;
+	sll->tail = NULL;
 	sll->size = 0;
 }
 
-void Singly_Delete_List(SinglyLinkedList *sll) {
-	if (sll == NULL) return;
-
-	Singly_Clear_List(sll);
-
-	free(sll);
+void Singly_Delete_List(SinglyLinkedList **sll) {
+	if (*sll == NULL) return;
+	Singly_Clear_List(*sll);
+	free(*sll);
+	*sll = NULL;
 }
 
 // Transformation

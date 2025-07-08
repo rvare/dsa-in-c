@@ -33,7 +33,7 @@ void Singly_Remove_Value(SinglyLinkedList *sll, int value);
 void Singly_Remove_Head(SinglyLinkedList *sll);
 void Singly_Remove_Tail(SinglyLinkedList *sll);
 void Singly_Clear_List(SinglyLinkedList *sll);
-void Singly_Delete_List(SinglyLinkedList *sll);
+void Singly_Delete_List(SinglyLinkedList **sll);
 
 // Transformation
 // SinglyLinkedList Singly_Transform(SinglyLinkedList *sll, void (*f)(SinglyNode *node));

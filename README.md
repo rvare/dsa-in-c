@@ -7,8 +7,54 @@ This repository is to keep track and maintain a personal library of algorithms a
 The following is my todo list for all the data structures and algorithms that I plan on implementing in C.
 
 - [ ] LinkedLists
-	- [ ] Singly
+	- [ ] Singly 
+		- [x] Add
+			- [x] Append
+			- [x] Prepend
+			- [x] InsertAfter
+		- [x] Delete
+			- [x] Remove Head
+			- [x] Remove Tail
+			- [x] Remove Element
+			- [x] Clear
+			- [x] Delete list
+		- [x] Getters
+			- [x] Head
+			- [x] Tail
+			- [x] Element
+			- [x] Get IndexOf
+			- [x] Get LastIndexOf
+			- [x] Size
+		- [x] To Array
+		- [x] Slice
+		- [ ] Foreach
+		- [ ] Forrange
+		- [x] Reverse
+		- [ ] Iterator
 	- [ ] Doubly
+		- [ ] Add
+			- [ ] Append
+			- [ ] Prepend
+			- [ ] InsertAfter
+		- [ ] Delete
+			- [ ] Remove Head
+			- [ ] Remove Tail
+			- [ ] Remove Element
+			- [ ] Clear
+			- [ ] Delete list
+		- [ ] Getters
+			- [ ] Head
+			- [ ] Tail
+			- [ ] Element
+			- [ ] Get IndexOf
+			- [ ] Get LastIndexOf
+			- [ ] Size
+		- [ ] To Array
+		- [ ] Reverse
+		- [ ] Slice
+		- [ ] Foreach
+		- [ ] Forrange
+		- [ ] Iterator
 	- [ ] Queues
 	- [ ] Stacks
 	- [ ] Deques
