@@ -115,7 +115,19 @@ int Singly_Get_IndexOf(SinglyLinkedList *sll, int value){
 	return -1;
 }
 
-SinglyNode Singly_Get_LastIndexOf(SinglyLinkedList *sll, int value){
+int Singly_Get_LastIndexOf(SinglyLinkedList *sll, int value){
+	assert(sll != NULL);
+	assert(sll->head != NULL);
+	SinglyNode* curr = sll->head;
+	int curr_index = 0;
+	int found_index = -1;
+	while (curr != NULL) {
+		if (curr->value == value) {
+			found_index = curr_index;
+		}
+		++curr_index;
+	}
+	return found_index > 0 ? found_index : -1;
 }
 
 unsigned int Singly_Get_Size(SinglyLinkedList *sll){
@@ -167,6 +179,16 @@ void Singly_Remove_Element(SinglyLinkedList *sll, int index) {
 }
 
 void Singly_Remove_Value(SinglyLinkedList *sll, int value) {
+	assert(sll != NULL);
+	assert(sll->head != NULL);
+	SinglyNode* curr = sll->head;
+	while (curr->next != NULL && curr->next->value != value) {
+		curr = curr->next;
+	}
+	SinglyNode* re_node = curr->next;
+	curr->next = curr->next->next;
+	re_node->next = NULL;
+	free(re_node);
 }
 
 void Singly_Clear_List(SinglyLinkedList *sll) {
@@ -219,8 +241,44 @@ SinglyLinkedList* Singly_Reverse_List(SinglyLinkedList *sll) {
 	return new_sll;
 }
 
-// Slicing
-SinglyLinkedList Singly_Slice(SinglyLinkedList *sll, int start, int end) {
+// Slicing DO NEXT
+SinglyLinkedList* Singly_Slice(SinglyLinkedList *sll, int start, int end) {
+	assert(sll != NULL);
+	assert(sll->head != NULL);
+	assert(sll->tail != NULL);
+	SinglyNode* curr = sll->head;
+	SinglyNode* start_node;
+	for (int i=0; i<start && curr!=NULL; i++) {
+		curr = curr->next;
+	}
+
+	assert(curr != NULL);
+
+	start_node = curr;
+
+	SinglyNode* end_node;
+	curr = sll->head;
+	for (int i=0; i<end && curr!=NULL; i++) {
+		curr = curr->next;
+	}
+
+	assert(curr != NULL);
+
+	end_node = curr;
+
+	SinglyLinkedList* new_sll = (SinglyLinkedList*)malloc(sizeof(SinglyLinkedList));
+
+	new_sll->head = start_node;
+	new_sll->tail = end_node;
+	curr = new_sll->head;
+	int count = 0;
+	while (curr != NULL) {
+		++count;
+		curr = curr->next;
+	}
+	new_sll->size = count;
+
+	return new_sll;
 }
 
 // TODO: Looping

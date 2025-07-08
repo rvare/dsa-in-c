@@ -24,7 +24,7 @@ SinglyNode* Singly_Get_Head(SinglyLinkedList *sll);
 SinglyNode* Singly_Get_Tail(SinglyLinkedList *sll);
 SinglyNode* Singly_Get_Element(SinglyLinkedList *sll, int index);
 int Singly_Get_IndexOf(SinglyLinkedList *sll, int value);
-SinglyNode Singly_Get_LastIndexOf(SinglyLinkedList *sll, int value);
+int Singly_Get_LastIndexOf(SinglyLinkedList *sll, int value);
 unsigned int Singly_Get_Size(SinglyLinkedList *sll);
 
 // Deletion
@@ -40,7 +40,7 @@ void Singly_Delete_List(SinglyLinkedList *sll);
 SinglyLinkedList* Singly_Reverse_List(SinglyLinkedList *sll);
 
 // Slicing
-SinglyLinkedList Singly_Slice(SinglyLinkedList *sll, int start, int end);
+SinglyLinkedList* Singly_Slice(SinglyLinkedList *sll, int start, int end);
 
 // TODO: Looping
 // void Singly_Foreach(SinglyLinkedList *sll, void (*f)(SinglyNode *node));
