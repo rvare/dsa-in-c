@@ -23,7 +23,7 @@ void Singly_InsertAfter(SinglyLinkedList*sll, int index, int value);
 SinglyNode* Singly_Get_Head(SinglyLinkedList *sll);
 SinglyNode* Singly_Get_Tail(SinglyLinkedList *sll);
 SinglyNode* Singly_Get_Element(SinglyLinkedList *sll, int index);
-SinglyNode Singly_Get_IndexOf(SinglyLinkedList *sll, int value);
+int Singly_Get_IndexOf(SinglyLinkedList *sll, int value);
 SinglyNode Singly_Get_LastIndexOf(SinglyLinkedList *sll, int value);
 unsigned int Singly_Get_Size(SinglyLinkedList *sll);
 
@@ -47,4 +47,5 @@ SinglyLinkedList Singly_Slice(SinglyLinkedList *sll, int start, int end);
 // void Singly_Forrange(SinglyLinkedList *sll, int start, int end, void (*f)(SinglyNode *node));
 
 // TODO: Make to array operations
+int* Singly_To_Array(SinglyLinkedList *sll);
 // TODO: Iterators operations

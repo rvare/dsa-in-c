@@ -100,6 +100,15 @@ int main() {
 	printf("New list\n");
 	print_list(sll3);
 
+	printf("Create array from list\n");
+	int* arr = Singly_To_Array(&sll2);
+	assert(arr != NULL);
+	int size = sll2.size;
+	for (int i = 0; i < size; i++) {
+		printf("%d ", arr[i]);
+	}
+	printf("\n");
+
 	return EXIT_SUCCESS;
 }
 
@@ -116,6 +125,7 @@ void check_elements(SinglyLinkedList* sll, int start) {
 }
 
 void print_list(SinglyLinkedList* sll) {
+	assert(sll != NULL);
 	assert(sll->head != NULL);
 
 	SinglyNode* curr = NULL;

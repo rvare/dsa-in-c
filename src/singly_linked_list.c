@@ -29,10 +29,12 @@ void Singly_Append(SinglyLinkedList *sll, int value){
 	if (sll->head == NULL && sll->tail == NULL) {
 		sll->head = new_node;
 		sll->tail = new_node;
+		++sll->size;
 	}
 	else {
 		sll->tail->next = new_node;
 		sll->tail = new_node;
+		++sll->size;
 	}
 }
 
@@ -44,12 +46,13 @@ void Singly_Prepend(SinglyLinkedList *sll, int value){
 	if (sll->head == NULL && sll->tail == NULL) {
 		sll->head = new_node;
 		sll->tail = new_node;
+		++sll->size;
 	}
 	else {
 		new_node->next = sll->head;
 		sll->head = new_node;
+		++sll->size;
 	}
-
 }
 
 void Singly_InsertAfter(SinglyLinkedList*sll, int index, int value){
@@ -67,12 +70,14 @@ void Singly_InsertAfter(SinglyLinkedList*sll, int index, int value){
 	if (curr_node == NULL) { // Index was last node
 		assert(sll->tail != NULL);
 		sll->tail->next = new_node;
+		++sll->size;
 		return;
 	}
 
 	SinglyNode* next_node = curr_node->next;
 	curr_node->next = new_node;
 	new_node->next = next_node;
+	++sll->size;
 }
 
 // Getters
@@ -98,7 +103,16 @@ SinglyNode* Singly_Get_Element(SinglyLinkedList *sll, int index){
 	return curr_node;
 }
 
-SinglyNode Singly_Get_IndexOf(SinglyLinkedList *sll, int value){
+int Singly_Get_IndexOf(SinglyLinkedList *sll, int value){
+	int index = 0;
+	SinglyNode* curr = sll->head;
+	for (curr=sll->head; curr!=NULL; curr=curr->next) {
+		if (curr->value == value) {
+			return index;
+		}
+		++index;
+	}
+	return -1;
 }
 
 SinglyNode Singly_Get_LastIndexOf(SinglyLinkedList *sll, int value){
@@ -119,6 +133,7 @@ void Singly_Remove_Head(SinglyLinkedList *sll) {
 	node->next = NULL;
 
 	free(node);
+	--sll->size;
 }
 
 void Singly_Remove_Tail(SinglyLinkedList *sll) {
@@ -132,6 +147,7 @@ void Singly_Remove_Tail(SinglyLinkedList *sll) {
 	new_tail->next = NULL;
 
 	free(node);
+	--sll->size;
 }
 
 void Singly_Remove_Element(SinglyLinkedList *sll, int index) {
@@ -147,6 +163,7 @@ void Singly_Remove_Element(SinglyLinkedList *sll, int index) {
 
 	remove_node->next = NULL;
 	free(remove_node);
+	--sll->size;
 }
 
 void Singly_Remove_Value(SinglyLinkedList *sll, int value) {
@@ -210,5 +227,21 @@ SinglyLinkedList Singly_Slice(SinglyLinkedList *sll, int start, int end) {
 // void Singly_Foreach(SinglyLinkedList *sll, void (*f)(SinglyNode *node));
 // void Singly_Forrange(SinglyLinkedList *sll, int start, int end, void (*f)(SinglyNode *node));
 
-// TODO: Make to array operations
+int* Singly_To_Array(SinglyLinkedList *sll) {
+	assert(sll != NULL);
+	int size = sll->size;
+	// int* arr = (int*)malloc(sizeof(int)*size);
+	int* arr = (int*)calloc(size, sizeof(int));
+
+	assert(arr != NULL);
+	SinglyNode* curr = sll->head;
+	int index = 0;
+	while(curr != NULL) {
+		arr[index] = curr->value;
+		++index;
+		curr = curr->next;
+	}
+	return arr;
+}
+
 // TODO: Iterators operations
