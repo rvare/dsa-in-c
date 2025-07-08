@@ -21,7 +21,6 @@ SinglyLinkedList* Singly_Constructor() {
 
 // Insertion Operations
 void Singly_Append(SinglyLinkedList *sll, int value){
-	assert(sll != NULL);
 	SinglyNode *new_node = (SinglyNode*)malloc(sizeof(SinglyNode));
 	new_node->value = value;
 	new_node->next = NULL;
@@ -39,7 +38,6 @@ void Singly_Append(SinglyLinkedList *sll, int value){
 }
 
 void Singly_Prepend(SinglyLinkedList *sll, int value){
-	assert(sll != NULL);
 	SinglyNode *new_node = (SinglyNode*)malloc(sizeof(SinglyNode));
 	new_node->value = value;
 	
@@ -56,19 +54,16 @@ void Singly_Prepend(SinglyLinkedList *sll, int value){
 }
 
 void Singly_InsertAfter(SinglyLinkedList*sll, int index, int value){
-	assert(sll != NULL);
 	SinglyNode *new_node = (SinglyNode*)malloc(sizeof(SinglyNode));
 	new_node->value = value;
 	new_node->next = NULL;
 
-	assert(sll->head != NULL);
 	SinglyNode *curr_node = sll->head;
 	for (int i=0; i < index && curr_node != NULL; i++) {
 		curr_node = curr_node->next;
 	}
 
 	if (curr_node == NULL) { // Index was last node
-		assert(sll->tail != NULL);
 		sll->tail->next = new_node;
 		++sll->size;
 		return;
@@ -82,18 +77,14 @@ void Singly_InsertAfter(SinglyLinkedList*sll, int index, int value){
 
 // Getters
 SinglyNode* Singly_Get_Head(SinglyLinkedList *sll){
-	assert(sll->head != NULL);
 	return sll->head;
 }
 
 SinglyNode* Singly_Get_Tail(SinglyLinkedList *sll){
-	assert(sll->tail != NULL);
 	return sll->tail;
 }
 
 SinglyNode* Singly_Get_Element(SinglyLinkedList *sll, int index){
-	assert(sll != NULL);
-	assert(sll->head != NULL);
 	if (index > sll->size) return NULL;
 
 	SinglyNode *curr_node = sll->head;
@@ -117,8 +108,6 @@ int Singly_Get_IndexOf(SinglyLinkedList *sll, int value){
 }
 
 int Singly_Get_LastIndexOf(SinglyLinkedList *sll, int value){
-	assert(sll != NULL);
-	assert(sll->head != NULL);
 	SinglyNode* curr = sll->head;
 	int curr_index = 0;
 	int found_index = -1;
@@ -133,13 +122,11 @@ int Singly_Get_LastIndexOf(SinglyLinkedList *sll, int value){
 }
 
 unsigned int Singly_Get_Size(SinglyLinkedList *sll){
-	assert(sll != NULL);
 	return sll->size;
 }
 
 // Deletion
 void Singly_Remove_Head(SinglyLinkedList *sll) {
-	assert(sll != NULL);
 	if (sll->head == NULL) return;
 
 	SinglyNode* node = sll->head;
@@ -151,7 +138,6 @@ void Singly_Remove_Head(SinglyLinkedList *sll) {
 }
 
 void Singly_Remove_Tail(SinglyLinkedList *sll) {
-	assert(sll != NULL);
 	if (sll->tail == NULL) return;
 
 	SinglyNode* node = sll->tail;
@@ -165,7 +151,6 @@ void Singly_Remove_Tail(SinglyLinkedList *sll) {
 }
 
 void Singly_Remove_Element(SinglyLinkedList *sll, int index) {
-	assert(sll != NULL);
 
 	SinglyNode* curr = sll->head;
 	for (int i=0; i<index-1; i++) {
@@ -181,8 +166,6 @@ void Singly_Remove_Element(SinglyLinkedList *sll, int index) {
 }
 
 void Singly_Remove_Value(SinglyLinkedList *sll, int value) {
-	assert(sll != NULL);
-	assert(sll->head != NULL);
 	SinglyNode* curr = sll->head;
 	while (curr->next != NULL && curr->next->value != value) {
 		curr = curr->next;
@@ -246,16 +229,11 @@ SinglyLinkedList* Singly_Reverse_List(SinglyLinkedList *sll) {
 
 // Slicing DO NEXT
 SinglyLinkedList* Singly_Slice(SinglyLinkedList *sll, int start, int end) {
-	assert(sll != NULL);
-	assert(sll->head != NULL);
-	assert(sll->tail != NULL);
 	SinglyNode* curr = sll->head;
 	SinglyNode* start_node;
 	for (int i=0; i<start && curr!=NULL; i++) {
 		curr = curr->next;
 	}
-
-	assert(curr != NULL);
 
 	start_node = curr;
 
@@ -264,8 +242,6 @@ SinglyLinkedList* Singly_Slice(SinglyLinkedList *sll, int start, int end) {
 	for (int i=0; i<end && curr!=NULL; i++) {
 		curr = curr->next;
 	}
-
-	assert(curr != NULL);
 
 	end_node = curr;
 
@@ -289,12 +265,10 @@ SinglyLinkedList* Singly_Slice(SinglyLinkedList *sll, int start, int end) {
 // void Singly_Forrange(SinglyLinkedList *sll, int start, int end, void (*f)(SinglyNode *node));
 
 int* Singly_To_Array(SinglyLinkedList *sll) {
-	assert(sll != NULL);
 	int size = sll->size;
 	// int* arr = (int*)malloc(sizeof(int)*size);
 	int* arr = (int*)calloc(size, sizeof(int));
 
-	assert(arr != NULL);
 	SinglyNode* curr = sll->head;
 	int index = 0;
 	while(curr != NULL) {
