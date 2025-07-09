@@ -68,3 +68,7 @@ int Search(Stack* stack, int value) {
 
 	return -1;
 }
+
+int Get_Size(Stack* stack) {
+	return stack->size;
+}

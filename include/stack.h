@@ -19,3 +19,4 @@ StackNode* Peek(Stack* stack);
 int Peek_Value(Stack* stack);
 int Emtpy(Stack* stack);
 int Search(Stack* stack, int value);
+int Get_Size(Stack* stack);

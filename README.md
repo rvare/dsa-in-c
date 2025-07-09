@@ -56,7 +56,13 @@ The following is my todo list for all the data structures and algorithms that I 
 		- [ ] Forrange
 		- [ ] Iterator
 	- [ ] Queues
-	- [ ] Stacks
+	- [x] Stacks
+		- [x] Push
+		- [x] Pop
+		- [x] Peek
+		- [x] Emtpy
+		- [x] Search
+		- [x] Get Size
 	- [ ] Deques
 	- [ ] Circular
 - [ ] Array based lists
