@@ -1,6 +1,6 @@
 typedef struct StackNode {
 	int value;
-	StackNode* next;
+	struct StackNode* next;
 } StackNode;
 
 typedef struct Stack {
@@ -14,7 +14,8 @@ void Stack_Initializer(Stack* stack);
 
 // Stack operations
 void Push(Stack* stack, int value);
-void Pop(Stack* stack, int value);
-int Peek(Stack* stack);
+StackNode* Pop(Stack* stack);
+StackNode* Peek(Stack* stack);
+int Peek_Value(Stack* stack);
 int Emtpy(Stack* stack);
 int Search(Stack* stack, int value);
