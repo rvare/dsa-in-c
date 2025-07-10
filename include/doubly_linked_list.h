@@ -12,8 +12,8 @@ typedef struct DoublyLinkedList {
 
 // Initializer
 void Doubly_Initializer(SinglyLinkedList *sll);
-
 DoublyLinkedList* Doubly_Constructor();
+DoublyNode* DoublyNode_Constructor(int value) {
 
 // Insertion Operations
 void Doubly_Append(DoublyLinkedList *sll, int value);
