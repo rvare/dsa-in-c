@@ -27,7 +27,7 @@ DoublyNode* DoublyNode_Constructor(int value) {
 }
 
 // Insertion Operations
-void Doubly_Append(DoublyLinkedList *dll, int value){
+void Doubly_Append(DoublyLinkedList *dll, int value) {
 	assert(NULL != dll);
 	DoublyNode *new_node = DoublyNode_Constructor(value);
 
@@ -43,7 +43,7 @@ void Doubly_Append(DoublyLinkedList *dll, int value){
 	++dll->size;
 }
 
-void Doubly_Prepend(DoublyLinkedList *dll, int value){
+void Doubly_Prepend(DoublyLinkedList *dll, int value) {
 	assert(NULL != dll);
 	DoublyNode *new_node = DoublyNode_Constructor(value);
 
@@ -59,7 +59,7 @@ void Doubly_Prepend(DoublyLinkedList *dll, int value){
 	++dll->size;
 }
 
-void Doubly_InsertAfter(DoublyLinkedList*dll, int index, int value){
+void Doubly_InsertAfter(DoublyLinkedList*dll, int index, int value) {
 	assert(NULL != dll);
 	DoublyNode *new_node = DoublyNode_Constructor(value);
 
@@ -87,7 +87,7 @@ void Doubly_InsertAfter(DoublyLinkedList*dll, int index, int value){
 }
 
 // Getters
-DoublyNode* Doubly_Get_Head(DoublyLinkedList *dll){
+DoublyNode* Doubly_Get_Head(DoublyLinkedList *dll) {
 	assert(NULL != dll);
 	assert(NULL != dll->head);
 	return dll->head;
@@ -104,7 +104,7 @@ unsigned int Doubly_Get_Size(DoublyLinkedList *dll){
 	return dll->size;
 }
 
-DoublyNode* Doubly_Get_Element(DoublyLinkedList *dll, int index){
+DoublyNode* Doubly_Get_Element(DoublyLinkedList *dll, int index) {
 	assert(NULL != dll);
 	assert(NULL != dll->head);
 	if (index > dll->size) return NULL;
@@ -117,7 +117,7 @@ DoublyNode* Doubly_Get_Element(DoublyLinkedList *dll, int index){
 	return curr_node;
 }
 
-int Doubly_Get_IndexOf(DoublyLinkedList *dll, int value){
+int Doubly_Get_IndexOf(DoublyLinkedList *dll, int value) {
 	assert(NULL != dll);
 	assert(NULL != dll->head);
 	int index = 0;
@@ -131,7 +131,7 @@ int Doubly_Get_IndexOf(DoublyLinkedList *dll, int value){
 	return -1;
 }
 
-int Doubly_Get_LastIndexOf(DoublyLinkedList *dll, int value){
+int Doubly_Get_LastIndexOf(DoublyLinkedList *dll, int value) {
 	assert(NULL != dll);
 	assert(NULL != dll->tail);
 	DoublyNode* curr = dll->tail;
@@ -211,8 +211,7 @@ void Doubly_Clear_List(DoublyLinkedList *dll) {
 
 void Doubly_Delete_List(DoublyLinkedList **dll) {
 	assert(NULL != dll);
-	assert(NULL != dll->head);
-	assert(NULL != dll->tail);
+	assert(NULL != *dll);
 	if (*dll == NULL) return;
 	Doubly_Clear_List(*dll);
 	free(*dll);
@@ -228,7 +227,7 @@ DoublyLinkedList* Doubly_Reverse_List(DoublyLinkedList *dll) {
 	DoublyNode* curr = dll->tail;
 
 	while (NULL != curr) {
-		Doubly_Append(curr->value);
+		Doubly_Append(new_dll, curr->value);
 		curr = curr->prev;
 	}
 

@@ -11,42 +11,36 @@ typedef struct DoublyLinkedList {
 } DoublyLinkedList;
 
 // Initializer
-void Doubly_Initializer(SinglyLinkedList *sll);
+void Doubly_Initializer(DoublyLinkedList *dll);
 DoublyLinkedList* Doubly_Constructor();
-DoublyNode* DoublyNode_Constructor(int value) {
+DoublyNode* DoublyNode_Constructor(int value);
 
 // Insertion Operations
-void Doubly_Append(DoublyLinkedList *sll, int value);
-void Doubly_Prepend(DoublyLinkedList *sll, int value);
-void Doubly_InsertAfter(DoublyLinkedList*sll, int index, int value);
+void Doubly_Append(DoublyLinkedList *dll, int value);
+void Doubly_Prepend(DoublyLinkedList *dll, int value);
+void Doubly_InsertAfter(DoublyLinkedList*dll, int index, int value);
 
 // Getters
-DoublyNode* Doubly_Get_Head(DoublyLinkedList *sll);
-DoublyNode* Singly_Get_Tail(DoublyLinkedList *sll);
-DoublyNode* Singly_Get_Element(DoublyLinkedList *sll, int index);
-int Doubly_Get_IndexOf(DoublyLinkedList *sll, int value);
-int Doubly_Get_LastIndexOf(DoublyLinkedList *sll, int value);
-unsigned int Doubly_Get_Size(DoublyLinkedList *sll);
+DoublyNode* Doubly_Get_Head(DoublyLinkedList *dll);
+DoublyNode* Doubly_Get_Tail(DoublyLinkedList *dll);
+DoublyNode* Doubly_Get_Element(DoublyLinkedList *dll, int index);
+int Doubly_Get_IndexOf(DoublyLinkedList *dll, int value);
+int Doubly_Get_LastIndexOf(DoublyLinkedList *dll, int value);
+unsigned int Doubly_Get_Size(DoublyLinkedList *dll);
 
 // Deletion
-void Doubly_Remove_Element(DoublyLinkedList *sll, int index);
-void Doubly_Remove_Value(DoublyLinkedList *sll, int value);
-void Doubly_Remove_Head(DoublyLinkedList *sll);
-void Doubly_Remove_Tail(DoublyLinkedList *sll);
-void Doubly_Clear_List(DoublyLinkedList *sll);
-void Doubly_Delete_List(DoublyLinkedList **sll);
+void Doubly_Remove_Element(DoublyLinkedList *dll, int index);
+void Doubly_Remove_Value(DoublyLinkedList *dll, int value);
+void Doubly_Remove_Head(DoublyLinkedList *dll);
+void Doubly_Remove_Tail(DoublyLinkedList *dll);
+void Doubly_Clear_List(DoublyLinkedList *dll);
+void Doubly_Delete_List(DoublyLinkedList **dll);
 
 // Transformation
-// SinglyLinkedList Singly_Transform(SinglyLinkedList *sll, void (*f)(SinglyNode *node));
-DoublyLinkedList* Doubly_Reverse_List(DoublyLinkedList *sll);
+DoublyLinkedList* Doubly_Reverse_List(DoublyLinkedList *dll);
 
 // Slicing
-DoublyLinkedList* Doubly_Slice(DoublyLinkedList *sll, int start, int end);
+DoublyLinkedList* Doubly_Slice(DoublyLinkedList *dll, int start, int end);
 
-// TODO: Looping
-// void Singly_Foreach(SinglyLinkedList *sll, void (*f)(SinglyNode *node));
-// void Singly_Forrange(SinglyLinkedList *sll, int start, int end, void (*f)(SinglyNode *node));
-
-// TODO: Make to array operations
-int* Doubly_To_Array(DoublyLinkedList *sll);
-// TODO: Iterators operations
+// To array
+int* Doubly_To_Array(DoublyLinkedList *dll);
