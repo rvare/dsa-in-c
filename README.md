@@ -27,35 +27,39 @@ The following is my todo list for all the data structures and algorithms that I 
 			- [x] Size
 		- [x] To Array
 		- [x] Slice
+		- [x] Reverse
 		- [ ] Foreach
 		- [ ] Forrange
-		- [x] Reverse
 		- [ ] Iterator
 	- [ ] Doubly
-		- [ ] Add
-			- [ ] Append
-			- [ ] Prepend
-			- [ ] InsertAfter
-		- [ ] Delete
-			- [ ] Remove Head
-			- [ ] Remove Tail
-			- [ ] Remove Element
-			- [ ] Clear
-			- [ ] Delete list
-		- [ ] Getters
-			- [ ] Head
-			- [ ] Tail
-			- [ ] Element
-			- [ ] Get IndexOf
-			- [ ] Get LastIndexOf
-			- [ ] Size
-		- [ ] To Array
-		- [ ] Reverse
-		- [ ] Slice
+		- [x] Add
+			- [x] Append
+			- [x] Prepend
+			- [x] InsertAfter
+		- [x] Delete
+			- [x] Remove Head
+			- [x] Remove Tail
+			- [x] Remove Element
+			- [x] Clear
+			- [x] Delete list
+		- [x] Getters
+			- [x] Head
+			- [x] Tail
+			- [x] Element
+			- [x] Get IndexOf
+			- [x] Get LastIndexOf
+			- [x] Size
+		- [x] To Array
+		- [x] Reverse
+		- [x] Slice
 		- [ ] Foreach
 		- [ ] Forrange
 		- [ ] Iterator
 	- [ ] Queues
+		- [ ] Enqueue
+		- [ ] Dequeue
+		- [ ] Peek
+		- [ ] Get Size
 	- [x] Stacks
 		- [x] Push
 		- [x] Pop
@@ -120,8 +124,8 @@ I may update the todo list to include more algorithms and data structures as I s
 
 # FAQs
 
-**Q:** *Can I use this for my projects?*
-**A:** Maybe, at the moment I prefer you not just because I would rather have it be good enough before saying so.
+**Q:** *Can I use this for my projects?*<br/>
+**A:** Maybe, at the moment I prefer you not just because I would rather have it be good enough before saying so.<br/>
 
-**Q:** *Can I contribute?*
+**Q:** *Can I contribute?*<br/>
 **A:** Again, maybe. It depends. This is mainly because my plan is to do this myself for personal growth purposes, but it really depends. Maybe once I feel it has matured enough or I've completed most of the items I may allow contributions.
