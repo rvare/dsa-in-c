@@ -37,7 +37,7 @@ void Doubly_Append(DoublyLinkedList *dll, int value) {
 	}
 	else {
 		dll->tail->next = new_node;
-		new_node->prev = dll->tail->next;
+		new_node->prev = dll->tail;
 		dll->tail = new_node;
 	}
 	++dll->size;

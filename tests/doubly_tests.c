@@ -123,9 +123,17 @@ int main() {
 	}
 
 	printf("\nTransformation operations\n");
+	printf("Reverse list\n");
+	printf("Old list\n");
+	print_list(dll2);
+	printf("New list\n");
+	DoublyLinkedList *rdll = Doubly_Reverse_List(dll2);
+	print_list(rdll);
 
 
 	printf("\nList slicing\n");
+	DoublyLinkedList *dll_slice = Doubly_Slice(dll2, 2, 4);
+	print_list(dll_slice);
 
 
 	printf("\nTo array conversion\n");
