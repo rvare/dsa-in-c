@@ -59,7 +59,6 @@ int main() {
 	print_list(dll);
 
 
-
 	printf("Getter operations\n");
 
 	printf("Get head\n");
@@ -103,7 +102,25 @@ int main() {
 
 
 	printf("\nDeletion operations\n");
+	printf("Remove head\n");
+	Doubly_Remove_Head(dll);
+	print_list(dll);
+	printf("Remove tail\n");
+	Doubly_Remove_Tail(dll);
+	print_list(dll);
+	printf("Remove element that contains 0\n");
+	Doubly_Remove_Element(dll, 2);
+	print_list(dll);
+	printf("Clear list\n");
+	Doubly_Clear_List(dll);
+	printf("Delete list\n");
+	Doubly_Delete_List(&dll);
 
+	printf("Creating new doubly list\n");
+	DoublyLinkedList *dll2 = Doubly_Constructor();
+	for (int i=0; i<5; i++) {
+		Doubly_Append(dll2, i);
+	}
 
 	printf("\nTransformation operations\n");
 
@@ -112,6 +129,13 @@ int main() {
 
 
 	printf("\nTo array conversion\n");
+	int *arr = Doubly_To_Array(dll2);
+	int size2 = Doubly_Get_Size(dll2);
+	printf("Printing array\n");
+	for (int i=0; i<size2; i++) {
+		printf("%d ", arr[i]);
+	}
+	printf("\n");
 
 
 	return EXIT_SUCCESS;

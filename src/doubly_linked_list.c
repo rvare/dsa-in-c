@@ -189,12 +189,13 @@ void Doubly_Remove_Value(DoublyLinkedList *dll, int value) {
 }
 
 void Doubly_Clear_List(DoublyLinkedList *dll) {
-	assert(NULL != dll);
-	assert(NULL != dll->head);
-	assert(NULL != dll->tail);
 	if (dll == NULL) return;
 
 	if (dll->head == NULL && dll->tail == NULL) return;
+
+	assert(NULL != dll);
+	assert(NULL != dll->head);
+	assert(NULL != dll->tail);
 
 	DoublyNode* curr = dll->head;
 	DoublyNode* node = NULL;
