@@ -28,7 +28,6 @@ DoublyNode* DoublyNode_Constructor(int value) {
 
 // Insertion Operations
 void Doubly_Append(DoublyLinkedList *dll, int value) {
-	assert(NULL != dll);
 	DoublyNode *new_node = DoublyNode_Constructor(value);
 
 	if (NULL == dll->head && NULL == dll->tail) {
@@ -44,7 +43,6 @@ void Doubly_Append(DoublyLinkedList *dll, int value) {
 }
 
 void Doubly_Prepend(DoublyLinkedList *dll, int value) {
-	assert(NULL != dll);
 	DoublyNode *new_node = DoublyNode_Constructor(value);
 
 	if (NULL == dll->head && NULL == dll->tail) {
@@ -60,23 +58,20 @@ void Doubly_Prepend(DoublyLinkedList *dll, int value) {
 }
 
 void Doubly_InsertAfter(DoublyLinkedList*dll, int index, int value) {
-	assert(NULL != dll);
 	DoublyNode *new_node = DoublyNode_Constructor(value);
 
 	DoublyNode *curr_node = dll->head;
-	for (int i=0; i < index && curr_node != NULL; i++) {
+	for (int i = 0; i < index && NULL != curr_node; i++) {
 		curr_node = curr_node->next;
 	}
 
-	if (curr_node == NULL) { // Index was last node
+	if (NULL == curr_node) { // Index was last node
 		dll->tail->next = new_node;
 		new_node->prev = dll->tail;
 		dll->tail = new_node;
 		++dll->size;
 		return;
 	}
-	assert(NULL != curr_node->next);
-	assert(NULL != curr_node->prev);
 
 	DoublyNode* next_node = curr_node->next;
 	curr_node->next = new_node;
@@ -88,29 +83,22 @@ void Doubly_InsertAfter(DoublyLinkedList*dll, int index, int value) {
 
 // Getters
 DoublyNode* Doubly_Get_Head(DoublyLinkedList *dll) {
-	assert(NULL != dll);
-	assert(NULL != dll->head);
 	return dll->head;
 }
 
 DoublyNode* Doubly_Get_Tail(DoublyLinkedList *dll){
-	assert(NULL != dll);
-	assert(NULL != dll->tail);
 	return dll->tail;
 }
 
 unsigned int Doubly_Get_Size(DoublyLinkedList *dll){
-	assert(NULL != dll);
 	return dll->size;
 }
 
 DoublyNode* Doubly_Get_Element(DoublyLinkedList *dll, int index) {
-	assert(NULL != dll);
-	assert(NULL != dll->head);
 	if (index > dll->size) return NULL;
 
 	DoublyNode *curr_node = dll->head;
-	for (int i=0; i < index && curr_node != NULL; i++) {
+	for (int i = 0; i < index && NULL != curr_node; i++) {
 		curr_node = curr_node->next;
 	}
 
@@ -118,11 +106,9 @@ DoublyNode* Doubly_Get_Element(DoublyLinkedList *dll, int index) {
 }
 
 int Doubly_Get_IndexOf(DoublyLinkedList *dll, int value) {
-	assert(NULL != dll);
-	assert(NULL != dll->head);
 	int index = 0;
 	DoublyNode* curr = dll->head;
-	for (curr=dll->head; curr!=NULL; curr=curr->next) {
+	for (curr = dll->head; NULL != curr; curr = curr->next) {
 		if (curr->value == value) {
 			return index;
 		}
@@ -132,12 +118,10 @@ int Doubly_Get_IndexOf(DoublyLinkedList *dll, int value) {
 }
 
 int Doubly_Get_LastIndexOf(DoublyLinkedList *dll, int value) {
-	assert(NULL != dll);
-	assert(NULL != dll->tail);
 	DoublyNode* curr = dll->tail;
 	int curr_index = dll->size-1;
 	int found_index = -1;
-	while (curr != NULL) {
+	while (NULL != curr) {
 		if (curr->value == value) {
 			found_index = curr_index;
 		}
@@ -149,9 +133,7 @@ int Doubly_Get_LastIndexOf(DoublyLinkedList *dll, int value) {
 
 // Deletion
 void Doubly_Remove_Head(DoublyLinkedList *dll) {
-	assert(NULL != dll);
-	assert(NULL != dll->head);
-	if (dll->head == NULL) return;
+	if (NULL == dll->head) return;
 
 	DoublyNode* node = dll->head;
 	dll->head = dll->head->next;
@@ -163,9 +145,7 @@ void Doubly_Remove_Head(DoublyLinkedList *dll) {
 }
 
 void Doubly_Remove_Tail(DoublyLinkedList *dll) {
-	assert(NULL != dll);
-	assert(NULL != dll->tail);
-	if (dll->tail == NULL) return;
+	if (NULL == dll->tail) return;
 
 	DoublyNode* node = dll->tail;
 	dll->tail = dll->tail->prev;
@@ -189,17 +169,13 @@ void Doubly_Remove_Value(DoublyLinkedList *dll, int value) {
 }
 
 void Doubly_Clear_List(DoublyLinkedList *dll) {
-	if (dll == NULL) return;
+	if (NULL == dll) return;
 
-	if (dll->head == NULL && dll->tail == NULL) return;
-
-	assert(NULL != dll);
-	assert(NULL != dll->head);
-	assert(NULL != dll->tail);
+	if (NULL == dll->head && NULL == dll->tail) return;
 
 	DoublyNode* curr = dll->head;
 	DoublyNode* node = NULL;
-	while(curr != NULL) {
+	while(NULL != curr) {
 		node = curr;
 		curr = curr->next;
 		free(node);
@@ -211,9 +187,7 @@ void Doubly_Clear_List(DoublyLinkedList *dll) {
 }
 
 void Doubly_Delete_List(DoublyLinkedList **dll) {
-	assert(NULL != dll);
-	assert(NULL != *dll);
-	if (*dll == NULL) return;
+	if (NULL == *dll) return;
 	Doubly_Clear_List(*dll);
 	free(*dll);
 	*dll = NULL;
@@ -221,9 +195,6 @@ void Doubly_Delete_List(DoublyLinkedList **dll) {
 
 // Transformation
 DoublyLinkedList* Doubly_Reverse_List(DoublyLinkedList *dll) {
-	assert(NULL != dll);
-	assert(NULL != dll->head);
-	assert(NULL != dll->tail);
 	DoublyLinkedList *new_dll = Doubly_Constructor();
 	DoublyNode* curr = dll->tail;
 
@@ -237,12 +208,9 @@ DoublyLinkedList* Doubly_Reverse_List(DoublyLinkedList *dll) {
 
 // Slicing
 DoublyLinkedList* Doubly_Slice(DoublyLinkedList *dll, int start, int end) {
-	assert(NULL != dll);
-	assert(NULL != dll->head);
-	assert(NULL != dll->tail);
 	DoublyNode* curr = dll->head;
 	DoublyNode* start_node;
-	for (int i=0; i<start && curr!=NULL; i++) {
+	for (int i = 0; i < start && NULL != curr; i++) {
 		curr = curr->next;
 	}
 
@@ -250,7 +218,7 @@ DoublyLinkedList* Doubly_Slice(DoublyLinkedList *dll, int start, int end) {
 
 	DoublyNode* end_node;
 	curr = dll->head;
-	for (int i=0; i<end && curr!=NULL; i++) {
+	for (int i = 0; i < end && NULL != curr; i++) {
 		curr = curr->next;
 	}
 
@@ -262,7 +230,7 @@ DoublyLinkedList* Doubly_Slice(DoublyLinkedList *dll, int start, int end) {
 	new_dll->tail = end_node;
 	curr = new_dll->head;
 	int count = 0;
-	while (curr != NULL) {
+	while (NULL != curr) {
 		++count;
 		curr = curr->next;
 	}
@@ -272,15 +240,12 @@ DoublyLinkedList* Doubly_Slice(DoublyLinkedList *dll, int start, int end) {
 }
 
 int* Doubly_To_Array(DoublyLinkedList *dll) {
-	assert(NULL != dll);
-	assert(NULL != dll->head);
-	assert(NULL != dll->tail);
 	int size = dll->size;
 	int* arr = (int*)calloc(size, sizeof(int));
 
 	DoublyNode* curr = dll->head;
 	int index = 0;
-	while(curr != NULL) {
+	while(NULL != curr) {
 		arr[index] = curr->value;
 		++index;
 		curr = curr->next;
