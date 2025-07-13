@@ -1,18 +1,44 @@
-build-singly: ./src/singly_linked_list.c
-	gcc -c ./src/singly_linked_list.c -o ./build/objects/singly_linked_list.o
-build-singly-test: ./tests/singly_tests.c ./src/singly_linked_list.c
-	gcc -g ./tests/singly_tests.c ./src/singly_linked_list.c -o ./build/tests/singly_tests.exe
-singly-test:
-	./build/tests/singly_tests.exe
-build-doubly: ./src/doubly_linked_list.c
-	gcc -c ./src/doubly_linked_list.c -o ./build/objects/doubly_linked_list.o
-build-doubly-test: ./tests/doubly_tests.c ./src/doubly_linked_list.c
-	gcc -g ./tests/doubly_tests.c ./src/doubly_linked_list.c -o ./build/tests/doubly_tests.exe
-doubly-test:
-	./build/tests/doubly_tests.exe
-build-stack: ./src/stack.c
-	gcc -c ./src/stack.c -o ./build/objects/stack.o
-build-stack-test: ./tests/stack_tests.c ./src/stack.c
-	gcc -g ./tests/stack_tests.c ./src/stack.c -o ./build/tests/stack_tests.exe
+SRCDIR=./src
+OBJDIR=./build/objects
+TESTSDIR=./tests
+TESTSOBJDIR=./build/tests
+
+CFLAGS=-c -Wall
+CDEBUG=-g -Wall
+
+build-singly: $(SRCDIR)/singly_linked_list.c
+	gcc $(CFLAGS) $(SRCDIR)/singly_linked_list.c -o $(OBJDIR)/singly_linked_list.o
+
+build-singly-test: $(TESTSDIR)/singly_tests.c $(SRCDIR)/singly_linked_list.c
+	gcc $(CDEBUG) $(TESTSDIR)/singly_tests.c $(SRCDIR)/singly_linked_list.c -o $(TESTSOBJDIR)/singly_tests.exe
+
+singly-test: $(TESTSOBJDIR)/singly_tests.exe
+	$(TESTSOBJDIR)/singly_tests.exe
+
+build-doubly: $(SRCDIR)/doubly_linked_list.c
+	gcc $(CFLAGS) $(SRCDIR)/doubly_linked_list.c -o $(OBJDIR)/doubly_linked_list.o
+
+build-doubly-test: $(TESTSDIR)/doubly_tests.c $(SRCDIR)/doubly_linked_list.c
+	gcc $(CDEBUG) $(TESTSDIR)/doubly_tests.c $(SRCDIR)/doubly_linked_list.c -o $(TESTSOBJDIR)/doubly_tests.exe
+
+doubly-test: $(TESTSOBJDIR)/doubly_tests.exe
+	$(TESTSOBJDIR)/doubly_tests.exe
+
+build-stack: $(SRCDIR)/stack.c
+	gcc $(CFLAGS) $(SRCDIR)/stack.c -o $(OBJDIR)/stack.o
+
+build-stack-test: $(TESTSDIR)/stack_tests.c $(SRCDIR)/stack.c
+	gcc $(CDEBUG) $(TESTSDIR)/stack_tests.c $(SRCDIR)/stack.c -o $(TESTSOBJDIR)/stack_tests.exe
+
 stack-test:
-	./build/tests/stack_tests.exe
+	$(TESTSOBJDIR)/stack_tests.exe
+
+clean:
+	rm $(OBJDIR)/*.o
+	rm $(TESTSOBJDIR)/*.exe
+
+clean-objs:
+	rm $(OBJDIR)/*.o
+
+clean-tests:
+	rm $(TESTSOBJDIR)/*.exe

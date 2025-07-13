@@ -68,6 +68,10 @@ The following is my todo list for all the data structures and algorithms that I 
 		- [x] Search
 		- [x] Get Size
 	- [ ] Deques
+		- [ ] Enqueue
+		- [ ] Dequeue
+		- [ ] Peek
+		- [ ] Get Size
 	- [ ] Circular
 - [ ] Array based lists
 	- [ ] ArrayList (Dynamic arrays?)
