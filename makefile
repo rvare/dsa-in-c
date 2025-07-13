@@ -33,6 +33,15 @@ build-stack-test: $(TESTSDIR)/stack_tests.c $(SRCDIR)/stack.c
 stack-test:
 	$(TESTSOBJDIR)/stack_tests.exe
 
+build-queue: $(SRCDIR)/queue.c
+	gcc $(CFLAGS) $(SRCDIR)/queue.c -o $(OBJDIR)/queue.o
+
+build-queue-test: $(TESTSDIR)/queue_tests.c $(SRCDIR)/queue.c
+	gcc $(CDEBUG) $(TESTSDIR)/queue_tests.c $(SRCDIR)/queue.c -o $(TESTSOBJDIR)/queue_tests.exe
+
+queue-test: $(TESTSOBJDIR)/queue_tests.exe
+	$(TESTSOBJDIR)/queue_tests.exe
+
 clean:
 	rm $(OBJDIR)/*.o
 	rm $(TESTSOBJDIR)/*.exe
