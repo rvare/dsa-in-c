@@ -47,8 +47,8 @@ void Enqueue(Queue *que, int value) {
 
 QueueNode* Dequeue (Queue *que) {
 	assert(NULL != que);
-	assert(NULL != que->head);
 	if (NULL == que) return NULL;
+	if (NULL == que->head) return NULL;
 
 	QueueNode* node = que->head;
 	que->head = que->head->next;
@@ -71,7 +71,8 @@ int Peek_Value(Queue *que) {
 }
 
 int Empty(Queue *que) {
-	return NULL == que ? 1 : 0;
+	if (NULL == que) return 1;
+	return NULL == que->head ? 1 : 0;
 }
 
 int Search(Queue *que, int value) {
