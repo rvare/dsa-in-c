@@ -55,11 +55,11 @@ The following is my todo list for all the data structures and algorithms that I 
 		- [ ] Foreach
 		- [ ] Forrange
 		- [ ] Iterator
-	- [ ] Queues
-		- [ ] Enqueue
-		- [ ] Dequeue
-		- [ ] Peek
-		- [ ] Get Size
+	- [x] Queues
+		- [x] Enqueue
+		- [x] Dequeue
+		- [x] Peek
+		- [x] Get Size
 	- [x] Stacks
 		- [x] Push
 		- [x] Pop
