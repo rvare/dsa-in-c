@@ -6,7 +6,7 @@ typedef struct ArrayList {
 } ArrayList;
 
 // Constructors and initializers
-void Arr_Constructor();
+ArrayList* Arr_Constructor();
 void Arr_Initializer(ArrayList *arr_list);
 
 // Getters
@@ -25,8 +25,8 @@ void Arr_Delete_List(ArrayList *arr_list);
 int Arr_IsEmpty(ArrayList *arr_list);
 
 // Searching
-int Arr_Get_IndexOf(ArrayList *arr_list);
-int Arr_Get_LastIndexOf(ArrayList *arr_list);
+int Arr_Get_IndexOf(ArrayList *arr_list, int value);
+int Arr_Get_LastIndexOf(ArrayList *arr_list, int value);
 
 // Removal and Deletion
 void Arr_Remove_Head(ArrayList *arr_list);

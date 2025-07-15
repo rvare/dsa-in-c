@@ -42,6 +42,15 @@ build-queue-test: $(TESTSDIR)/queue_tests.c $(SRCDIR)/queue.c
 queue-test: $(TESTSOBJDIR)/queue_tests.exe
 	$(TESTSOBJDIR)/queue_tests.exe
 
+build-arraylist: $(SRCDIR)/array_list.c
+	gcc $(CFLAGS) $(SRCDIR)/array_list.c -o $(OBJDIR)/array_list.o
+
+build-arraylist-test: $(TESTSDIR)/array_list_tests.c $(SRCDIR)/array_list.c
+	gcc $(CDEBUG) $(TESTSDIR)/array_list_tests.c $(SRCDIR)/array_list.c -o $(TESTSOBJDIR)/array_list_tests.exe
+
+arraylist-test: $(TESTSOBJDIR)/array_list_tests.exe
+	$(TESTSOBJDIR)/array_list_tests.exe
+
 clean:
 	rm $(OBJDIR)/*.o
 	rm $(TESTSOBJDIR)/*.exe
