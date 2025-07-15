@@ -75,12 +75,52 @@ The following is my todo list for all the data structures and algorithms that I 
 	- [ ] Circular
 - [ ] Array based lists
 	- [ ] ArrayList (Dynamic arrays?)
+		- [ ] Add
+			- [ ] Append
+			- [ ] Prepend
+			- [ ] InsertAfter
+		- [ ] Delete
+			- [ ] Remove Head
+			- [ ] Remove Tail
+			- [ ] Remove Element
+			- [ ] Delete IndexOf
+			- [ ] Clear
+			- [ ] Delete list
+		- [ ] Getters
+			- [ ] Head
+			- [ ] Tail
+			- [ ] Element
+			- [ ] Get IndexOf
+			- [ ] Get LastIndexOf
+			- [ ] Size
+		- [ ] Reverse
+		- [ ] Slice
+		- [ ] Foreach
+		- [ ] Forrange
+		- [ ] Iterator
 	- [ ] Queues
+		- [ ] Enqueue
+		- [ ] Dequeue
+		- [ ] Peek
+		- [ ] Get Size
 	- [ ] Stacks
+		- [ ] Push
+		- [ ] Pop
+		- [ ] Peek
+		- [ ] Get Size
 	- [ ] Deques
+		- [ ] Enqueue
+		- [ ] Dequeue
+		- [ ] Peek
+		- [ ] Get Size
 	- [ ] Circular
+		- [ ] Add
+		- [ ] Delete
+		- [ ] Insert
+		- [ ] Get Size
+		- [ ] Foreach
 - [ ] Binary search
-	- [ ] For linkedlists
+	- [ ] For linkedlists (Does this need to be made?)
 	- [ ] For array based lists
 - [ ] Sorting
 	- [ ] Merge sort
