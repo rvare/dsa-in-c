@@ -74,9 +74,9 @@ The following is my todo list for all the data structures and algorithms that I 
 		- [ ] Get Size
 	- [ ] Circular
 - [ ] Array based lists
-	- [ ] ArrayList (Dynamic arrays?)
+	- [x] ArrayList (Dynamic arrays?)
 		- [ ] Add
-			- [ ] Append
+			- [x] Append
 			- [ ] Prepend
 			- [ ] InsertAfter
 		- [ ] Delete
@@ -84,17 +84,17 @@ The following is my todo list for all the data structures and algorithms that I 
 			- [ ] Remove Tail
 			- [ ] Remove Element
 			- [ ] Delete IndexOf
-			- [ ] Clear
-			- [ ] Delete list
+			- [x] Clear
+			- [x] Delete list
 		- [ ] Getters
 			- [ ] Head
 			- [ ] Tail
-			- [ ] Element
-			- [ ] Get IndexOf
-			- [ ] Get LastIndexOf
-			- [ ] Size
-		- [ ] Reverse
-		- [ ] Slice
+			- [x] Element
+			- [x] Get IndexOf
+			- [x] Get LastIndexOf
+			- [x] Size
+		- [x] Reverse
+		- [x] Slice
 		- [ ] Foreach
 		- [ ] Forrange
 		- [ ] Iterator
