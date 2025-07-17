@@ -58,6 +58,7 @@ void Arr_Append(ArrayList *arr_list, int value) {
 	*arr_list->ptr = value;
 	if (arr_list->size != arr_list->capacity) {
 		++arr_list->ptr;
+		++arr_list->size;
 	}
 }
 
@@ -93,6 +94,7 @@ void Arr_Delete_List(ArrayList *arr_list) {
 	if (NULL == arr_list) return;
 	if (NULL == arr_list->array) return;
 	if (0 == arr_list->size) return;
+	Arr_Clear_List(arr_list);
 
 	free(arr_list->array);
 	arr_list->array = NULL;
