@@ -67,6 +67,7 @@ int ArrStack_Pop(ArrStack *stack) {
 int ArrStack_Peek(ArrStack *stack) {
 	assert(NULL != stack);
 	assert(NULL != stack->ptr);
+
 	return stack->ptr ? *stack->ptr : 0;
 }
 
@@ -75,6 +76,7 @@ int ArrStack_Empty(ArrStack *stack) {
 	assert(NULL != stack);
 	assert(NULL != stack->ptr);
 	assert(-1 > stack->count);
+
 	return stack->count > 0 ? 1 : 0;
 }
 
@@ -82,6 +84,7 @@ int ArrStack_Search(ArrStack *stack, int value) { // Where is value in stack
 	assert(NULL != stack);
 	assert(NULL != stack->array);
 	assert(NULL != stack->ptr);
+
 	int *curr = stack->ptr - 1;
 	int count = 0;
 
@@ -98,7 +101,24 @@ int ArrStack_Get_Size(ArrStack *stack) {
 }
 
 // Helper functions
-void ArrStack_Resize(ArrStack *stack) {
+void _ArrStack_Resize(ArrStack *stack) {
+	assert(NULL != stack);
+	assert(NULL != stack->array);
+	assert(NULL != stack->ptr);
+
 	if (0 == stack->resizable) return;
+	if (stack->count != stack->capacity) return;
+
+	int *array = (int*)malloc(sizeof(int) * stack->capacity * 2);
+	// int *array = (int*)calloc(stack->capacity * 2, sizeof(int));
+	for (int i = 0; i < stack->count; i++) {
+		array[i] = stack->array[i];
+	}
+
+	free(stack->array);
+
+	stack->array = array;
+	stack->capacity = stack->capacity * 2;
+	stack->ptr = stack->ptr + stack->count - 1;
 }
 

@@ -25,4 +25,4 @@ int ArrStack_Search(ArrStack *stack, int value); // Where is value in stack?
 int ArrStack_Get_Size(ArrStack *stack);
 
 // Helper functions
-void ArrStack_Resize(ArrStack *stack);
+void _ArrStack_Resize(ArrStack *stack);
