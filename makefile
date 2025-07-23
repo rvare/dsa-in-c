@@ -51,6 +51,15 @@ build-arraylist-test: $(TESTSDIR)/array_list_tests.c $(SRCDIR)/array_list.c
 arraylist-test: $(TESTSOBJDIR)/array_list_tests.exe
 	$(TESTSOBJDIR)/array_list_tests.exe
 
+build-arraystack: $(SRCDIR)/arr_stack.c
+	gcc $(CFLAGS) $(SRCDIR)/arr_stack.c -o $(OBJDIR)/arr_stack.o
+
+build-arraystack-test: $(TESTSDIR)/array_stack_tests.c $(SRCDIR)/arr_stack.c
+	gcc $(CDEBUG) $(TESTSDIR)/array_list_tests.c $(SRCDIR)/arr_stack.c -o $(TESTSOBJDIR)/array_stack_tests.exe
+
+arraystack-test: $(TESTSOBJDIR)/array_stack_tests.exe
+	$(TESTSOBJDIR)/array_stack_tests.exe
+
 clean:
 	rm $(OBJDIR)/*.o
 	rm $(TESTSOBJDIR)/*.exe

@@ -11,9 +11,9 @@ typedef struct ArrStack {
 
 // Constructor and initializer
 ArrStack* ArrStack_Constructor();
-ArrStack* ArrStack_Constructor(int resizable);
+ArrStack* ArrStack_Constructor_Bool(int resizable);
 void ArrStack_Initializer(ArrStack *arr_stack);
-void ArrStack_Initializer(ArrStack *arr_stack, int resizable);
+void ArrStack_Initializer_Bool(ArrStack *arr_stack, int resizable);
 
 // Stack operations
 void ArrStack_Push(ArrStack *stack, int value);

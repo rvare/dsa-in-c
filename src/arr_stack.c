@@ -10,15 +10,19 @@ ArrStack* ArrStack_Constructor() {
 	arr_stack->resizable = RESIZE_TRUE;
 	arr_stack->capacity = 10;
 	arr_stack->count = 0;
+
+	return arr_stack;
 }
 
-ArrStack* ArrStack_Constructor(int resizable) {
+ArrStack* ArrStack_Constructor_Bool(int resizable) {
 	ArrStack *arr_stack = (ArrStack*)malloc(sizeof(ArrStack));
 	arr_stack->array = (int*)malloc(sizeof(int) * 10);
 	arr_stack->ptr = arr_stack->array;
 	arr_stack->resizable = resizable;
 	arr_stack->capacity = 10;
 	arr_stack->count = 0;
+	
+	return arr_stack;
 }
 
 void ArrStack_Initializer(ArrStack *arr_stack) {
@@ -29,10 +33,10 @@ void ArrStack_Initializer(ArrStack *arr_stack) {
 	arr_stack->count = 0;
 }
 
-void ArrStack_Initializer(ArrStack *arr_stack, int resizable) {
+void ArrStack_Initializer_Bool(ArrStack *arr_stack, int resizable) {
 	arr_stack->array = (int*)malloc(sizeof(int) * 10);
 	arr_stack->ptr = arr_stack->array;
-	arr_stack->resizable = resiazble;
+	arr_stack->resizable = resizable;
 	arr_stack->capacity = 10;
 	arr_stack->count = 0;
 }
@@ -55,11 +59,11 @@ int ArrStack_Pop(ArrStack *stack) {
 	assert(NULL != stack->array);
 	assert(NULL != stack->ptr);
 
-	if (0 == stack->count) return;
+	if (0 == stack->count) return -1;
 
 	--stack->count;
 	--stack->ptr;
-	int popped = stack->ptr;
+	int popped = *stack->ptr;
 
 	return popped;
 }
@@ -85,7 +89,6 @@ int ArrStack_Search(ArrStack *stack, int value) { // Where is value in stack
 	assert(NULL != stack->array);
 	assert(NULL != stack->ptr);
 
-	int *curr = stack->ptr - 1;
 	int count = 0;
 
 	for (int i = stack->count - 1; i > 0; i--) {
