@@ -79,7 +79,7 @@ int ArrStack_Peek(ArrStack *stack) {
 int ArrStack_Empty(ArrStack *stack) {
 	assert(NULL != stack);
 	assert(NULL != stack->ptr);
-	assert(-1 > stack->count);
+	assert(stack->count > -1);
 
 	return stack->count > 0 ? 1 : 0;
 }
