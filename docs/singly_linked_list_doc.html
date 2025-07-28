@@ -1,0 +1,586 @@
+<p><strong>Table of Contents</strong></p>
+<ul>
+<li><a href="#structs">Structs</a>
+<ul>
+<li><a href="#summar-of-structs">Summary of Structs</a></li>
+<li><a href="#struct-definitions">Struct Definitions</a></li>
+</ul></li>
+<li><a href="#functions">Functions</a>
+<ul>
+<li><a href="#initializer-and-constructor">Initializer and
+Constructor</a></li>
+<li><a href="#insertion-operations">Insertion Operations</a></li>
+<li><a href="#getters">Getters</a></li>
+<li><a href="#deletion">Deletion</a></li>
+<li><a href="#transformation">Transformation</a></li>
+<li><a href="#slicing">Slicing</a></li>
+<li><a href="#conversion">Conversion</a></li>
+</ul></li>
+</ul>
+<hr />
+<h1 id="structs">Structs</h1>
+<h2 id="summary-of-structs">Summary of Structs</h2>
+<p><code>SinglyNode</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>int value</code></td>
+<td>Holds the value.</td>
+</tr>
+<tr>
+<td
+style="text-align: center;"><code>struct SinglyNode *next</code></td>
+<td>Pointer to next node.</td>
+</tr>
+</tbody>
+</table>
+<p><code>SinglyLinkedList</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>SinglyNode *head</code></td>
+<td>Pointer of to the head of the list.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>SinglyNode *tail</code></td>
+<td>Pointer of to the tail of the list.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>unisgned int size</code></td>
+<td>How many elements the list currently has.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="struct-definitions">Struct Definitions</h2>
+<p>The following are the definitions of each struct that is used to
+create the singly linked list.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> SinglyNode <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> value<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> SinglyNode <span class="op">*</span>next<span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> SinglyNode<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> SinglyLinkedList <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    SinglyNode <span class="op">*</span>head<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    SinglyNode <span class="op">*</span>tail<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">int</span> size<span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> SinglyLinkedList<span class="op">;</span></span></code></pre></div>
+<h1 id="functions">Functions</h1>
+<h2 id="initializer-and-constructor">Initializer and Constructor</h2>
+<dl>
+<dt><code>void Singly_Initializer(SinglyLinkedList *sll)</code></dt>
+<dd>
+Initailzes a <code>SinglyLinkedList</code> that has already been
+allocated or is a variable.
+</dd>
+</dl>
+<details>
+<summary>
+Implementation
+</summary>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> Singly_Initializer<span class="op">(</span>SinglyLinkedList <span class="op">*</span>sll<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    sll<span class="op">-&gt;</span>head <span class="op">=</span> NULL<span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    sll<span class="op">-&gt;</span>tail <span class="op">=</span> NULL<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    sll<span class="op">-&gt;</span>size <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</details>
+<dl>
+<dt><code>SinglyLinkedList* Singly_Constructor()</code></dt>
+<dd>
+Calls <code>malloc()</code> to allocate a <code>SinglyLinkedList</code>
+struct on the heap.
+</dd>
+</dl>
+<details>
+<summary>
+Implementation
+</summary>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>SinglyLinkedList<span class="op">*</span> Singly_Constructor<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    SinglyLinkedList<span class="op">*</span> sll <span class="op">=</span> <span class="op">(</span>SinglyLinkedList<span class="op">*)</span>malloc<span class="op">(</span><span class="kw">sizeof</span><span class="op">(</span>SinglyLinkedList<span class="op">));</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    sll<span class="op">-&gt;</span>head <span class="op">=</span> NULL<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    sll<span class="op">-&gt;</span>tail <span class="op">=</span> NULL<span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    sll<span class="op">-&gt;</span>size <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sll<span class="op">;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</details>
+<h2 id="insertion-operations">Insertion Operations</h2>
+<dl>
+<dt><code>void Singly_Append(SinglyLinkedList *sll, int value)</code></dt>
+<dd>
+Construct and append a <code>SinglyNode</code> at the tail of the list.
+</dd>
+</dl>
+<details>
+<summary>
+Implementation
+</summary>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> Singly_Append<span class="op">(</span>SinglyLinkedList <span class="op">*</span>sll<span class="op">,</span> <span class="dt">int</span> value<span class="op">){</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    SinglyNode <span class="op">*</span>new_node <span class="op">=</span> <span class="op">(</span>SinglyNode<span class="op">*)</span>malloc<span class="op">(</span><span class="kw">sizeof</span><span class="op">(</span>SinglyNode<span class="op">));</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    new_node<span class="op">-&gt;</span>value <span class="op">=</span> value<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    new_node<span class="op">-&gt;</span>next <span class="op">=</span> NULL<span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>NULL <span class="op">==</span> sll<span class="op">-&gt;</span>head <span class="op">&amp;&amp;</span> NULL <span class="op">==</span> sll<span class="op">-&gt;</span>tail<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        sll<span class="op">-&gt;</span>head <span class="op">=</span> new_node<span class="op">;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        sll<span class="op">-&gt;</span>tail <span class="op">=</span> new_node<span class="op">;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">++</span>sll<span class="op">-&gt;</span>size<span class="op">;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        sll<span class="op">-&gt;</span>tail<span class="op">-&gt;</span>next <span class="op">=</span> new_node<span class="op">;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        sll<span class="op">-&gt;</span>tail <span class="op">=</span> new_node<span class="op">;</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        <span class="op">++</span>sll<span class="op">-&gt;</span>size<span class="op">;</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</details>
+<dl>
+<dt><code>void Singly_Prepend(SinglyLinkedList *sll, int value)</code></dt>
+<dd>
+Construct and prepend a <code>SinglyNode</code> at the head of the list.
+</dd>
+</dl>
+<details>
+<summary>
+Implementation
+</summary>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> Singly_Prepend<span class="op">(</span>SinglyLinkedList <span class="op">*</span>sll<span class="op">,</span> <span class="dt">int</span> value<span class="op">){</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    SinglyNode <span class="op">*</span>new_node <span class="op">=</span> <span class="op">(</span>SinglyNode<span class="op">*)</span>malloc<span class="op">(</span><span class="kw">sizeof</span><span class="op">(</span>SinglyNode<span class="op">));</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    new_node<span class="op">-&gt;</span>value <span class="op">=</span> value<span class="op">;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>NULL <span class="op">==</span> sll<span class="op">-&gt;</span>head <span class="op">&amp;&amp;</span> NULL <span class="op">==</span> sll<span class="op">-&gt;</span>tail<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        sll<span class="op">-&gt;</span>head <span class="op">=</span> new_node<span class="op">;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        sll<span class="op">-&gt;</span>tail <span class="op">=</span> new_node<span class="op">;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        <span class="op">++</span>sll<span class="op">-&gt;</span>size<span class="op">;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        new_node<span class="op">-&gt;</span>next <span class="op">=</span> sll<span class="op">-&gt;</span>head<span class="op">;</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        sll<span class="op">-&gt;</span>head <span class="op">=</span> new_node<span class="op">;</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        <span class="op">++</span>sll<span class="op">-&gt;</span>size<span class="op">;</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</details>
+<dl>
+<dt><code>void Singly_InsertAfter(SinglyLinkedList*sll, int index, int value)</code></dt>
+<dd>
+Cosntruct and insert a <code>SinglyNode</code> <em>after</em>
+<code>index</code>.
+</dd>
+</dl>
+<details>
+<summary>
+Implementation
+</summary>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> Singly_InsertAfter<span class="op">(</span>SinglyLinkedList<span class="op">*</span>sll<span class="op">,</span> <span class="dt">int</span> index<span class="op">,</span> <span class="dt">int</span> value<span class="op">){</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    SinglyNode <span class="op">*</span>new_node <span class="op">=</span> <span class="op">(</span>SinglyNode<span class="op">*)</span>malloc<span class="op">(</span><span class="kw">sizeof</span><span class="op">(</span>SinglyNode<span class="op">));</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    new_node<span class="op">-&gt;</span>value <span class="op">=</span> value<span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    new_node<span class="op">-&gt;</span>next <span class="op">=</span> NULL<span class="op">;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    SinglyNode <span class="op">*</span>curr_node <span class="op">=</span> sll<span class="op">-&gt;</span>head<span class="op">;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> index <span class="op">&amp;&amp;</span> NULL <span class="op">!=</span> curr_node<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        curr_node <span class="op">=</span> curr_node<span class="op">-&gt;</span>next<span class="op">;</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>NULL <span class="op">==</span> curr_node<span class="op">)</span> <span class="op">{</span> <span class="co">// Index was last node</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        sll<span class="op">-&gt;</span>tail<span class="op">-&gt;</span>next <span class="op">=</span> new_node<span class="op">;</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        <span class="op">++</span>sll<span class="op">-&gt;</span>size<span class="op">;</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    SinglyNode<span class="op">*</span> next_node <span class="op">=</span> curr_node<span class="op">-&gt;</span>next<span class="op">;</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    curr_node<span class="op">-&gt;</span>next <span class="op">=</span> new_node<span class="op">;</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    new_node<span class="op">-&gt;</span>next <span class="op">=</span> next_node<span class="op">;</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="op">++</span>sll<span class="op">-&gt;</span>size<span class="op">;</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</details>
+<h2 id="getters">Getters</h2>
+<dl>
+<dt><code>SinglyNode* Singly_Get_Head(SinglyLinkedList *sll)</code></dt>
+<dd>
+Return a pointer to the head of the list.
+</dd>
+</dl>
+<details>
+<summary>
+Implementation
+</summary>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>SinglyNode<span class="op">*</span> Singly_Get_Head<span class="op">(</span>SinglyLinkedList <span class="op">*</span>sll<span class="op">){</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sll<span class="op">-&gt;</span>head<span class="op">;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</details>
+<dl>
+<dt><code>SinglyNode* Singly_Get_Tail(SinglyLinkedList *sll)</code></dt>
+<dd>
+Return a pointer to the tail of the list.
+</dd>
+</dl>
+<details>
+<summary>
+Implementation
+</summary>
+<div class="sourceCode" id="cb9"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>SinglyNode<span class="op">*</span> Singly_Get_Head<span class="op">(</span>SinglyLinkedList <span class="op">*</span>sll<span class="op">){</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sll<span class="op">-&gt;</span>tail<span class="op">;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</details>
+<dl>
+<dt><code>SinglyNode* Singly_Get_Element(SinglyLinkedList *sll, int index)</code></dt>
+<dd>
+Return a pointer that is the element at <code>index</code> from the head
+of the list.
+</dd>
+</dl>
+<details>
+<summary>
+Implementation
+</summary>
+<div class="sourceCode" id="cb10"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>SinglyNode<span class="op">*</span> Singly_Get_Element<span class="op">(</span>SinglyLinkedList <span class="op">*</span>sll<span class="op">,</span> <span class="dt">int</span> index<span class="op">){</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>index <span class="op">&gt;</span> sll<span class="op">-&gt;</span>size<span class="op">)</span> <span class="cf">return</span> NULL<span class="op">;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    SinglyNode <span class="op">*</span>curr_node <span class="op">=</span> sll<span class="op">-&gt;</span>head<span class="op">;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> index <span class="op">&amp;&amp;</span> NULL <span class="op">!=</span> curr_node<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        curr_node <span class="op">=</span> curr_node<span class="op">-&gt;</span>next<span class="op">;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> curr_node<span class="op">;</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</details>
+<dl>
+<dt><code>int Singly_Get_IndexOf(SinglyLinkedList *sll, int value)</code></dt>
+<dd>
+Return the index of where the first <em>appearnce</em> of
+<code>value</code> is.
+</dd>
+</dl>
+<details>
+<summary>
+Implementation
+</summary>
+<div class="sourceCode" id="cb11"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> Singly_Get_IndexOf<span class="op">(</span>SinglyLinkedList <span class="op">*</span>sll<span class="op">,</span> <span class="dt">int</span> value<span class="op">){</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> index <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    SinglyNode<span class="op">*</span> curr <span class="op">=</span> sll<span class="op">-&gt;</span>head<span class="op">;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span>curr <span class="op">=</span> sll<span class="op">-&gt;</span>head<span class="op">;</span> NULL <span class="op">!=</span> curr<span class="op">;</span> curr <span class="op">=</span> curr<span class="op">-&gt;</span>next<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>curr<span class="op">-&gt;</span>value <span class="op">==</span> value<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> index<span class="op">;</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        <span class="op">++</span>index<span class="op">;</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</details>
+<dl>
+<dt><code>int Singly_Get_LastIndexOf(SinglyLinkedList *sll, int value)</code></dt>
+<dd>
+Return the index of where the <em>last</em> appearnce of
+<code>value</code> is.
+</dd>
+</dl>
+<details>
+<summary>
+Implementation
+</summary>
+<div class="sourceCode" id="cb12"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> Singly_Get_LastIndexOf<span class="op">(</span>SinglyLinkedList <span class="op">*</span>sll<span class="op">,</span> <span class="dt">int</span> value<span class="op">){</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    SinglyNode<span class="op">*</span> curr <span class="op">=</span> sll<span class="op">-&gt;</span>head<span class="op">;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> curr_index <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> found_index <span class="op">=</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>NULL <span class="op">!=</span> curr<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>curr<span class="op">-&gt;</span>value <span class="op">==</span> value<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>            found_index <span class="op">=</span> curr_index<span class="op">;</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">++</span>curr_index<span class="op">;</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        curr <span class="op">=</span> curr<span class="op">-&gt;</span>next<span class="op">;</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> found_index <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">?</span> found_index <span class="op">:</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</details>
+<dl>
+<dt><code>unsigned int Singly_Get_Size(SinglyLinkedList *sll)</code></dt>
+<dd>
+Return the the current size of the list, as in, how many items are in
+the list.
+</dd>
+</dl>
+<details>
+<summary>
+Implementation
+</summary>
+<div class="sourceCode" id="cb13"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">int</span> Singly_Get_Size<span class="op">(</span>SinglyLinkedList <span class="op">*</span>sll<span class="op">){</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sll<span class="op">-&gt;</span>size<span class="op">;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</details>
+<h2 id="deletion">Deletion</h2>
+<dl>
+<dt><code>void Singly_Remove_Element(SinglyLinkedList *sll, int index)</code></dt>
+<dd>
+Remove the element at <code>index</code>.
+</dd>
+<dd>
+This function also calls <code>free()</code> to deallocate the node.
+</dd>
+</dl>
+<details>
+<summary>
+Implementation
+</summary>
+<div class="sourceCode" id="cb14"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> Singly_Remove_Element<span class="op">(</span>SinglyLinkedList <span class="op">*</span>sll<span class="op">,</span> <span class="dt">int</span> index<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    SinglyNode<span class="op">*</span> curr <span class="op">=</span> sll<span class="op">-&gt;</span>head<span class="op">;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> index<span class="op">-</span><span class="dv">1</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        curr <span class="op">=</span> curr<span class="op">-&gt;</span>next<span class="op">;</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    SinglyNode<span class="op">*</span> remove_node <span class="op">=</span> curr<span class="op">-&gt;</span>next<span class="op">;</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    curr<span class="op">-&gt;</span>next <span class="op">=</span> curr<span class="op">-&gt;</span>next<span class="op">-&gt;</span>next<span class="op">;</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    remove_node<span class="op">-&gt;</span>next <span class="op">=</span> NULL<span class="op">;</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    free<span class="op">(</span>remove_node<span class="op">);</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>sll<span class="op">-&gt;</span>size<span class="op">;</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</details>
+<dl>
+<dt><code>void Singly_Remove_Value(SinglyLinkedList *sll, int value)</code></dt>
+<dd>
+Remove the <em>first occurance</em> of <code>value</code> in the list.
+</dd>
+<dd>
+The function also calls <code>free()</code> to deallocate the node.
+</dd>
+</dl>
+<details>
+<summary>
+Implementation
+</summary>
+<div class="sourceCode" id="cb15"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> Singly_Remove_Value<span class="op">(</span>SinglyLinkedList <span class="op">*</span>sll<span class="op">,</span> <span class="dt">int</span> value<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    SinglyNode<span class="op">*</span> curr <span class="op">=</span> sll<span class="op">-&gt;</span>head<span class="op">;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>NULL <span class="op">!=</span> curr<span class="op">-&gt;</span>next <span class="op">&amp;&amp;</span> curr<span class="op">-&gt;</span>next<span class="op">-&gt;</span>value <span class="op">!=</span> value<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        curr <span class="op">=</span> curr<span class="op">-&gt;</span>next<span class="op">;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    SinglyNode<span class="op">*</span> re_node <span class="op">=</span> curr<span class="op">-&gt;</span>next<span class="op">;</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    curr<span class="op">-&gt;</span>next <span class="op">=</span> curr<span class="op">-&gt;</span>next<span class="op">-&gt;</span>next<span class="op">;</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    re_node<span class="op">-&gt;</span>next <span class="op">=</span> NULL<span class="op">;</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    free<span class="op">(</span>re_node<span class="op">);</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</details>
+<dl>
+<dt><code>void Singly_Remove_Head(SinglyLinkedList *sll)</code></dt>
+<dd>
+Remove the head of the list.
+</dd>
+<dd>
+This will move the <code>head</code> pointer to the next element in the
+list.
+</dd>
+<dd>
+The function also calls <code>free()</code> to deallocate the node.
+</dd>
+</dl>
+<details>
+<summary>
+Implementation
+</summary>
+<div class="sourceCode" id="cb16"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> Singly_Remove_Head<span class="op">(</span>SinglyLinkedList <span class="op">*</span>sll<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>NULL <span class="op">==</span> sll<span class="op">-&gt;</span>head<span class="op">)</span> <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    SinglyNode<span class="op">*</span> node <span class="op">=</span> sll<span class="op">-&gt;</span>head<span class="op">;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    sll<span class="op">-&gt;</span>head <span class="op">=</span> sll<span class="op">-&gt;</span>head<span class="op">-&gt;</span>next<span class="op">;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    node<span class="op">-&gt;</span>next <span class="op">=</span> NULL<span class="op">;</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    free<span class="op">(</span>node<span class="op">);</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>sll<span class="op">-&gt;</span>size<span class="op">;</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</details>
+<dl>
+<dt><code>void Singly_Remove_Tail(SinglyLinkedList *sll)</code></dt>
+<dd>
+Remove the tail of the list.
+</dd>
+<dd>
+This will move the <code>tail</code> pointer to the second to last
+element of the list.
+</dd>
+<dd>
+The function also calls <code>free()</code> to deallocate the node.
+</dd>
+</dl>
+<details>
+<summary>
+Implementation
+</summary>
+<div class="sourceCode" id="cb17"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> Singly_Remove_Tail<span class="op">(</span>SinglyLinkedList <span class="op">*</span>sll<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>NULL <span class="op">==</span> sll<span class="op">-&gt;</span>tail<span class="op">)</span> <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    SinglyNode<span class="op">*</span> node <span class="op">=</span> sll<span class="op">-&gt;</span>tail<span class="op">;</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    SinglyNode<span class="op">*</span> new_tail <span class="op">=</span> sll<span class="op">-&gt;</span>head<span class="op">;</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span><span class="op">(</span>NULL <span class="op">!=</span> new_tail<span class="op">-&gt;</span>next<span class="op">-&gt;</span>next<span class="op">)</span> new_tail <span class="op">=</span> new_tail<span class="op">-&gt;</span>next<span class="op">;</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    new_tail<span class="op">-&gt;</span>next <span class="op">=</span> NULL<span class="op">;</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    free<span class="op">(</span>node<span class="op">);</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>sll<span class="op">-&gt;</span>size<span class="op">;</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</details>
+<dl>
+<dt><code>void Singly_Clear_List(SinglyLinkedList *sll)</code></dt>
+<dd>
+Clear the current list.
+</dd>
+<dd>
+This will call <code>free()</code> on all nodes of the list, set
+<code>head</code> and <code>tail</code> pointers to <code>NULL</code>,
+and <code>size</code> to zero.
+</dd>
+</dl>
+<details>
+<summary>
+Implementation
+</summary>
+<div class="sourceCode" id="cb18"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> Singly_Clear_List<span class="op">(</span>SinglyLinkedList <span class="op">*</span>sll<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>NULL <span class="op">==</span> sll<span class="op">)</span> <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>NULL <span class="op">==</span> sll<span class="op">-&gt;</span>head <span class="op">&amp;&amp;</span> NULL <span class="op">==</span> sll<span class="op">-&gt;</span>tail<span class="op">)</span> <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    SinglyNode<span class="op">*</span> curr <span class="op">=</span> sll<span class="op">-&gt;</span>head<span class="op">;</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    SinglyNode<span class="op">*</span> node <span class="op">=</span> NULL<span class="op">;</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span><span class="op">(</span>NULL <span class="op">!=</span> curr<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>        node <span class="op">=</span> curr<span class="op">;</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>        curr <span class="op">=</span> curr<span class="op">-&gt;</span>next<span class="op">;</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>        free<span class="op">(</span>node<span class="op">);</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    sll<span class="op">-&gt;</span>head <span class="op">=</span> NULL<span class="op">;</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    sll<span class="op">-&gt;</span>tail <span class="op">=</span> NULL<span class="op">;</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    sll<span class="op">-&gt;</span>size <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</details>
+<dl>
+<dt><code>void Singly_Delete_List(SinglyLinkedList **sll)</code></dt>
+<dd>
+Completely clear list and deallocate it from the heap. Set the pointer
+to <code>NULL</code>.
+</dd>
+</dl>
+<details>
+<summary>
+Implementation
+</summary>
+<div class="sourceCode" id="cb19"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> Singly_Delete_List<span class="op">(</span>SinglyLinkedList <span class="op">**</span>sll<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>NULL <span class="op">==</span> <span class="op">*</span>sll<span class="op">)</span> <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    Singly_Clear_List<span class="op">(*</span>sll<span class="op">);</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    free<span class="op">(*</span>sll<span class="op">);</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span>sll <span class="op">=</span> NULL<span class="op">;</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</details>
+<h2 id="transformation">Transformation</h2>
+<dl>
+<dt><code>SinglyLinkedList* Singly_Reverse_List(SinglyLinkedList *sll)</code></dt>
+<dd>
+Reverse the linked list pointed by <code>*sll</code>.
+</dd>
+<dd>
+This function is a recursive implementation, using the memory stack to
+reverse the list.
+</dd>
+</dl>
+<details>
+<summary>
+Implementation
+</summary>
+<div class="sourceCode" id="cb20"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> _Singly_Reverse_List<span class="op">(</span>SinglyLinkedList<span class="op">*</span> sll<span class="op">,</span> SinglyNode<span class="op">*</span> node<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>NULL <span class="op">==</span> node<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>NULL <span class="op">==</span> node<span class="op">-&gt;</span>next<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>        Singly_Append<span class="op">(</span>sll<span class="op">,</span> node<span class="op">-&gt;</span>value<span class="op">);</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>        _Singly_Reverse_List<span class="op">(</span>sll<span class="op">,</span> node<span class="op">-&gt;</span>next<span class="op">);</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>        Singly_Append<span class="op">(</span>sll<span class="op">,</span> node<span class="op">-&gt;</span>value<span class="op">);</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>SinglyLinkedList<span class="op">*</span> Singly_Reverse_List<span class="op">(</span>SinglyLinkedList <span class="op">*</span>sll<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>    SinglyLinkedList <span class="op">*</span>new_sll <span class="op">=</span> Singly_Constructor<span class="op">();</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>    SinglyNode<span class="op">*</span> curr <span class="op">=</span> sll<span class="op">-&gt;</span>head<span class="op">;</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>    _Singly_Reverse_List<span class="op">(</span>new_sll<span class="op">,</span> curr<span class="op">);</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> new_sll<span class="op">;</span></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</details>
+<h2 id="slicing">Slicing</h2>
+<dl>
+<dt><code>SinglyLinkedList* Singly_Slice(SinglyLinkedList *sll, int start, int end)</code></dt>
+<dd>
+Returns a new <code>SinglyLinkedList</code> whose <code>head</code> and
+<code>tail</code> points to the same nodes in the list pointed by
+<code>*sll</code>.
+</dd>
+</dl>
+<details>
+<summary>
+Implementation
+</summary>
+<div class="sourceCode" id="cb21"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>SinglyLinkedList<span class="op">*</span> Singly_Slice<span class="op">(</span>SinglyLinkedList <span class="op">*</span>sll<span class="op">,</span> <span class="dt">int</span> start<span class="op">,</span> <span class="dt">int</span> end<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    SinglyNode<span class="op">*</span> curr <span class="op">=</span> sll<span class="op">-&gt;</span>head<span class="op">;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    SinglyNode<span class="op">*</span> start_node<span class="op">;</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> start <span class="op">&amp;&amp;</span> NULL <span class="op">!=</span> curr<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>        curr <span class="op">=</span> curr<span class="op">-&gt;</span>next<span class="op">;</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    start_node <span class="op">=</span> curr<span class="op">;</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    SinglyNode<span class="op">*</span> end_node<span class="op">;</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    curr <span class="op">=</span> sll<span class="op">-&gt;</span>head<span class="op">;</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> end <span class="op">&amp;&amp;</span> NULL <span class="op">!=</span> curr<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>        curr <span class="op">=</span> curr<span class="op">-&gt;</span>next<span class="op">;</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    end_node <span class="op">=</span> curr<span class="op">;</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>    SinglyLinkedList<span class="op">*</span> new_sll <span class="op">=</span> <span class="op">(</span>SinglyLinkedList<span class="op">*)</span>malloc<span class="op">(</span><span class="kw">sizeof</span><span class="op">(</span>SinglyLinkedList<span class="op">));</span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>    new_sll<span class="op">-&gt;</span>head <span class="op">=</span> start_node<span class="op">;</span></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>    new_sll<span class="op">-&gt;</span>tail <span class="op">=</span> end_node<span class="op">;</span></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>    curr <span class="op">=</span> new_sll<span class="op">-&gt;</span>head<span class="op">;</span></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> count <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>NULL <span class="op">!=</span> curr<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>        <span class="op">++</span>count<span class="op">;</span></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>        curr <span class="op">=</span> curr<span class="op">-&gt;</span>next<span class="op">;</span></span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>    new_sll<span class="op">-&gt;</span>size <span class="op">=</span> count<span class="op">;</span></span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> new_sll<span class="op">;</span></span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</details>
+<h2 id="conversion">Conversion</h2>
+<dl>
+<dt><code>int* Singly_To_Array(SinglyLinkedList *sll)</code></dt>
+<dd>
+Return an array that contains copies of the values from
+<code>*sll</code>.
+</dd>
+</dl>
+<details>
+<summary>
+Implementation
+</summary>
+<div class="sourceCode" id="cb22"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span><span class="op">*</span> Singly_To_Array<span class="op">(</span>SinglyLinkedList <span class="op">*</span>sll<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> size <span class="op">=</span> sll<span class="op">-&gt;</span>size<span class="op">;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span><span class="op">*</span> arr <span class="op">=</span> <span class="op">(</span><span class="dt">int</span><span class="op">*)</span>calloc<span class="op">(</span>size<span class="op">,</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">));</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    SinglyNode<span class="op">*</span> curr <span class="op">=</span> sll<span class="op">-&gt;</span>head<span class="op">;</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> index <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span><span class="op">(</span>NULL <span class="op">!=</span> curr<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>        arr<span class="op">[</span>index<span class="op">]</span> <span class="op">=</span> curr<span class="op">-&gt;</span>value<span class="op">;</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">++</span>index<span class="op">;</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>        curr <span class="op">=</span> curr<span class="op">-&gt;</span>next<span class="op">;</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> arr<span class="op">;</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</details>
